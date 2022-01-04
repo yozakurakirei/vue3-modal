@@ -1,6 +1,8 @@
 <template>
   <h1>{{ msg }}</h1>
-  <div v-if="showModal">
+
+  <teleport to=".modals" v-if="showModal">
+    <!-- login -->
     <Modal theme="" @close="toggleModal" >
       <template v-slot:links>
         <a href="#">新規登録はこちら</a>
@@ -9,9 +11,10 @@
       <h1>ログイン</h1>
       <p>メールアドレスとパスワードを入力してください</p>
     </Modal>
-  </div>
+  </teleport>
 
-  <div v-if="showLogin">
+  <!-- signup -->
+  <teleport to=".modals" v-if="showLogin">
     <Modal theme="" @close="toggleLogin" >
       <template v-slot:links>
         <a href="#">ログインはこちら</a>
@@ -20,41 +23,52 @@
       <h1>新規登録</h1>
       <p>アカウントを作ってみましょう</p>
     </Modal>
-  </div>
+  </teleport>
 
   <br>
   <button @click="toggleModal">ログイン</button>
   <button @click="toggleLogin">新規登録</button>
+  <br>
+  <button @click="start" :disabled="isPlaying">Start</button>
+  <Block v-if="isPlaying" :delay = delay />
 </template>
 
 <script>
 import Modal from "./components/Modal.vue";
+import Block from "./components/Block.vue";
 
 export default {
   name: 'App',
   components: {
-    Modal,
+    Modal, Block,
   },
   data() {
     return {
       msg: "Welcom to Jutaku(/・・/!!",
       showModal: false,
       showLogin: false,
+      isPlaying: false,
+      delay: null,
     }
   },
   methods: {
     toggleModal() {
-      this.showModal = !this.showModal
+      this.showModal = !this.showModal;
     },
     toggleLogin() {
-      this.showLogin = !this.showLogin
+      this.showLogin = !this.showLogin;
+    },
+    start() {
+      this.isPlaying = 2000 + Math.random() * 5000;
+      this.delay = true;
+      console.log(this.isPlaying);
     }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
+#app, .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
