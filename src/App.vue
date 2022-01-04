@@ -1,34 +1,53 @@
 <template>
   <h1>{{ msg }}</h1>
   <div v-if="showModal">
-    <Modal :title="title" :text="text" theme="sale" @close="toggleModal" />
-    <Signup />
+    <Modal theme="" @close="toggleModal" >
+      <template v-slot:links>
+        <a href="#">新規登録はこちら</a>
+        <a href="#">お困りの方へ</a>
+      </template>
+      <h1>ログイン</h1>
+      <p>メールアドレスとパスワードを入力してください</p>
+    </Modal>
   </div>
+
+  <div v-if="showLogin">
+    <Modal theme="" @close="toggleLogin" >
+      <template v-slot:links>
+        <a href="#">ログインはこちら</a>
+        <a href="#">お困りの方へ</a>
+      </template>
+      <h1>新規登録</h1>
+      <p>アカウントを作ってみましょう</p>
+    </Modal>
+  </div>
+
   <br>
   <button @click="toggleModal">ログイン</button>
-  <button @click="toggleModal">新規登録</button>
+  <button @click="toggleLogin">新規登録</button>
 </template>
 
 <script>
 import Modal from "./components/Modal.vue";
-import Signup from "./components/Signup.vue";
 
 export default {
   name: 'App',
   components: {
-    Modal, Signup,
+    Modal,
   },
   data() {
     return {
+      msg: "Welcom to Jutaku(/・・/!!",
       showModal: false,
-      msg: "初めてのVueアプリです(../",
-      title: "modal title",
-      text: "モーダルのコンテンツが入ります",
+      showLogin: false,
     }
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
+    },
+    toggleLogin() {
+      this.showLogin = !this.showLogin
     }
   }
 }

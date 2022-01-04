@@ -1,15 +1,17 @@
 <template>
-  <div class="backdrop" @click="closeModal">
+  <div class="backdrop" @click.self="closeModal">
     <div class="modal" :class="{ sale: theme === 'sale' }">
-      <h1>{{ title }}</h1>
-      <p>{{ text }}</p>
+      <slot>デフォルト部分なのでコンテンツがない時に表示されます</slot>
+      <div class="actions">
+        <slot name="links"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "text", "theme"],
+  props: ["theme"],
   methods: {
     closeModal() {
       this.$emit("close");
@@ -33,6 +35,20 @@ export default {
       border-radius: 1rem;
       h1 {
         color: #03cfb4
+      }
+      .actions {
+        text-align: center;
+        margin: 3rem 0 1.5rem 0;
+        a {
+          color: #555;
+          font-weight: bold;
+          padding: 1rem;
+          border: 1px solid #eee;
+          background: #eee;
+          text-decoration: none;
+          margin: 1rem;
+          box-shadow: 1px 2px 2px #ccc;
+        }       
       }
     }
     .sale {
