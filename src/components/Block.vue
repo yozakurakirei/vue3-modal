@@ -1,5 +1,5 @@
 <template>
-  <div class="block">
+  <div class="block" v-if="showBlock" @click="stopTime">
     クリックしてね
   </div>
 </template>
@@ -8,7 +8,31 @@
 export default {
   props: [
     "delay",
-  ]
+  ],
+  data () {
+    return {
+      showBlock: false,
+      timer: null,
+      reactiontime: 0,
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showBlock = true;
+    }, this.delay) 
+  },
+  methods: {
+    startTime() {
+      this.timer = setInterval(() => {
+        this.reactiontime += 10;
+      }, 10);
+    },
+    stopTime() {
+      clearInterval(this.timer);
+      this.$emit("end", this.reactiontime);
+    },
+    
+  }
 }
 </script>
 

@@ -30,7 +30,8 @@
   <button @click="toggleLogin">新規登録</button>
   <br>
   <button @click="start" :disabled="isPlaying">Start</button>
-  <Block v-if="isPlaying" :delay = delay />
+  <Block v-if="isPlaying" :delay = delay @end="endGame" />
+  <p>反応時間: {{ score }}</p>
 </template>
 
 <script>
@@ -49,6 +50,7 @@ export default {
       showLogin: false,
       isPlaying: false,
       delay: null,
+      score: null,
     }
   },
   methods: {
@@ -59,9 +61,13 @@ export default {
       this.showLogin = !this.showLogin;
     },
     start() {
-      this.isPlaying = 2000 + Math.random() * 5000;
-      this.delay = true;
-      console.log(this.isPlaying);
+      this.delay = 2000 + Math.random() * 5000;
+      this.isPlaying = true;
+    },
+    endGame(reactiontime) {
+      this.score = reactiontime;
+      this.isPlaying = false;
+      this
     }
   }
 }
