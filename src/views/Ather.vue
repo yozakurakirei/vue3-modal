@@ -1,16 +1,10 @@
 <template>
   <h1>その他のページです</h1>
-  <p>{{ msg }}</p>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
 export default {
-  name: "Ather",
-  data() {
-    return {
-      msg: "This is an Ather Page!(・・"
-    }
-  }
 }
 </script>
 

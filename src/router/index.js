@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
 import Jobs from "../views/jobs/Jobs.vue";
 import JobDetail from "../views/jobs/JobDetail.vue";
 import NotFound404 from "../views/error/NotFound404.vue";
-import MyBook from "../views/MyStudy/MyBook.vue"
-import Instance from "../views/MyStudy/Instance.vue"
-import CompositionApi from "../views/MyStudy/CompositionApi.vue"
+import MyBook from "../views/MyStudy/MyBook.vue";
+import Instance from "../views/MyStudy/Instance.vue";
+import CompositionApi from "../views/MyStudy/CompositionApi.vue";
+import { setBlockTracking } from 'vue';
+import Blog from "../views/blog/Blog.vue";
 
 const routes = [
   {
@@ -59,6 +61,11 @@ const routes = [
     name: "CompositionApi",
     component: CompositionApi
   },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: Blog,
+  }
   
 ]
 
