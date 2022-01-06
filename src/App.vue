@@ -4,6 +4,9 @@
     <router-link :to="{ name: 'About' }">About</router-link> |
     <router-link to="/ather">その他</router-link> |
     <router-link :to="{ name: 'Jobs'}">Jobs</router-link> |
+    <router-link :to="{ name: 'MyBook'}">no compoAPI</router-link> |
+    <router-link :to="{ name: 'Instance'}">インスタンス</router-link> |
+    <router-link :to="{ name: 'CompositionApi'}">コンポジションAPI</router-link>
   </div>
   <button @click="redirect">ホーム</button>
   <button @click="back">戻る</button>

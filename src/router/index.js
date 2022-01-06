@@ -3,6 +3,9 @@ import Home from '../views/Home.vue'
 import Jobs from "../views/jobs/Jobs.vue";
 import JobDetail from "../views/jobs/JobDetail.vue";
 import NotFound404 from "../views/error/NotFound404.vue";
+import MyBook from "../views/MyStudy/MyBook.vue"
+import Instance from "../views/MyStudy/Instance.vue"
+import CompositionApi from "../views/MyStudy/CompositionApi.vue"
 
 const routes = [
   {
@@ -39,7 +42,24 @@ const routes = [
     path: "/:catchAll(.*)",
     name: "NotFound404",
     component: NotFound404,
-  }
+  },
+  // study
+  {
+    path: "/mybook",
+    name: "MyBook",
+    component: MyBook,
+  },
+  {
+    path: "/instance",
+    name: "Instance",
+    component: Instance
+  },
+  {
+    path: "/composition",
+    name: "CompositionApi",
+    component: CompositionApi
+  },
+  
 ]
 
 const router = createRouter({
